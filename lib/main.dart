@@ -1,3 +1,4 @@
+import 'package:easyin/screens/auth_screen.dart';
 import 'package:easyin/screens/home_condominio_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
         accentColor: Colors.white
       ),
-      home: HomeCondominioScreen(), 
+      home: AuthScreen(), 
       routes: {
         
       },
