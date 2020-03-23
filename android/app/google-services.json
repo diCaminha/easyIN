@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "664275666364",
+    "firebase_url": "https://easyin-3db7f.firebaseio.com",
+    "project_id": "easyin-3db7f",
+    "storage_bucket": "easyin-3db7f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:664275666364:android:8f05d7e2f03dfd11e657b9",
+        "android_client_info": {
+          "package_name": "br.com.meuap.meu_apartamento"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "664275666364-qrk6r1sn59cc2lqg1uuej1ljo8odoqoh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvr3mJ3ZpgzYfm3mqjHSDk449lyWB1sCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "664275666364-qrk6r1sn59cc2lqg1uuej1ljo8odoqoh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
