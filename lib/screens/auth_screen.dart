@@ -1,3 +1,4 @@
+import 'package:easyin/screens/home_condominio_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -183,7 +184,7 @@ class _AuthCardState extends State<AuthCard> {
     if (_authMode == AuthMode.Login) {
         FirebaseAuth.instance
             .signInWithEmailAndPassword(email: _authData['email'], password: _authData['password'])
-            .then((user) => Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage(user: user.user))))
+            .then((user) => Navigator.push(context, MaterialPageRoute(builder: (context) => HomeCondominioScreen())))
             .catchError((e) => AlertDialog(title: Text('Erro ao fazer login'), backgroundColor: Colors.red));
     } else {
         FirebaseAuth.instance
