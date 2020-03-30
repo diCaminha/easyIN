@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:664275666364:android:8f05d7e2f03dfd11e657b9",
+        "mobilesdk_app_id": "1:664275666364:android:18ad41563418848ae657b9",
         "android_client_info": {
-          "package_name": "br.com.meuap.meu_apartamento"
+          "package_name": "com.example.easyin"
         }
       },
       "oauth_client": [

@@ -176,6 +176,7 @@ class _AuthCardState extends State<AuthCard> {
       return;
     }
 
+
     _formKey.currentState.save();
     setState(() {
       _isLoading = true;

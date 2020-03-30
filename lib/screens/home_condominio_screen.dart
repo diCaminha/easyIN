@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easyin/models/condominio.dart';
 import 'package:easyin/screens/home_page.dart';
 import 'package:flutter/material.dart';
@@ -9,20 +10,21 @@ class HomeCondominioScreen extends StatefulWidget {
 
 class _HomeCondominioScreenState extends State {
   final _form = GlobalKey<FormState>();
+  final databaseReference = Firestore.instance;
 
   var _condominio = Condominio(
       id: null, nome: '', endereco: '', nomeSindico: '', numCasas: 0);
 
   void _saveForm() async {
     _form.currentState.save();
-    // await databaseReference.collection("condominios").add({
-    //   'nome': _condominio.nome,
-    //   'endereco': _condominio.endereco,
-    //   'nomeSindico': 'Denis',
-    //   'numCasas': _condominio.numCasas
-    // });
-    // Navigator.push(
-    //     context, MaterialPageRoute(builder: (context) => HomePage()));
+    await databaseReference.collection("condominios").add({
+      'nome': _condominio.nome,
+      'endereco': _condominio.endereco,
+      'nomeSindico': 'Denis',
+      'numCasas': _condominio.numCasas
+    });
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 
   @override
