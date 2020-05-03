@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easyin/models/condominio.dart';
+import 'package:easyin/screens/auth_screen.dart';
 import 'package:easyin/screens/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,7 @@ class _HomeCondominioScreenState extends State {
       'numCasas': _condominio.numCasas
     });
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
+        context, MaterialPageRoute(builder: (context) => AuthScreen()));
   }
 
   @override
