@@ -64,6 +64,7 @@ class _AuthCardState extends State<AuthCard> {
   Map<String, String> _authData = {
     'email': '',
     'password': '',
+    'nome': '',
   };
   bool _isLoading = false;
 
@@ -105,6 +106,22 @@ class _AuthCardState extends State<AuthCard> {
                     },
                   ),
                 ),
+                if (_authMode == AuthMode.Signup)
+                  Padding(
+                    padding: EdgeInsets.only(top: 15.0),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                          labelText: 'Nome', border: OutlineInputBorder()),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'nome é obrigatório.';
+                        }
+                      },
+                      onSaved: (value) {
+                        _authData['nome'] = value;
+                      },
+                    ),
+                  ),
                 Padding(
                   padding: EdgeInsets.only(top: 15.0),
                   child: TextFormField(
@@ -196,7 +213,7 @@ class _AuthCardState extends State<AuthCard> {
     } else {
       final authProvider = Provider.of<AuthProvider>(context);
       authProvider
-          .signup(_authData['email'], _authData['password'])
+          .signup(_authData['nome'], _authData['email'], _authData['password'])
           .then((user) => {
                 _switchAuthMode(),
                 Navigator.push(context,
