@@ -1,6 +1,8 @@
 import 'package:easyin/providers/auth_provider.dart';
+import 'package:easyin/providers/condominios_provider.dart';
 import 'package:easyin/screens/auth_screen.dart';
 import 'package:easyin/screens/home_condominio_screen.dart';
+import 'package:easyin/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,13 +18,21 @@ class MyApp extends StatelessWidget {
           ChangeNotifierProvider.value(
             value: AuthProvider(),
           ),
+          ChangeNotifierProxyProvider<AuthProvider, CondominiosProvider>(
+            update: (ctx, auth, _) => CondominiosProvider(userId:auth.userId),
+          )
         ],
-        child: MaterialApp(
-          title: 'Condo App',
-          theme: ThemeData(
-              primarySwatch: Colors.orange, accentColor: Colors.white),
-          home: AuthScreen(),
-          routes: {},
+        child: Consumer<AuthProvider>(
+          builder: (ctx, auth, _) => MaterialApp(
+            title: 'Condo App',
+            theme: ThemeData(
+                primarySwatch: Colors.orange, accentColor: Colors.white),
+            home: auth.isAuth ? HomeCondominioScreen() : AuthScreen(),
+            routes: {
+              HomeCondominioScreen.routeName: (ctx) => HomeCondominioScreen(),
+              HomeScreen.routeName: (ctx) => HomeScreen(),
+            },
+          ),
         ));
   }
 }
@@ -33,6 +43,5 @@ class Home extends StatelessWidget {
     return Container(
       child: Text("Hello home"),
     );
-    
   }
 }

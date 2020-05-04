@@ -203,11 +203,13 @@ class _AuthCardState extends State<AuthCard> {
     });
 
     if (_authMode == AuthMode.Login) {
-      final authProvider = Provider.of<AuthProvider>(context);
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
       authProvider
           .signin(_authData['email'], _authData['password'])
-          .then((user) => Navigator.push(context,
-              MaterialPageRoute(builder: (context) => HomeCondominioScreen())))
+          .then((user) => {
+                print('@@@@@@ test @@@@@@'),
+                Navigator.of(context).pushReplacementNamed('/home-condominio'),
+              })
           .catchError((e) => AlertDialog(
               title: Text('Erro ao fazer login'), backgroundColor: Colors.red));
     } else {
