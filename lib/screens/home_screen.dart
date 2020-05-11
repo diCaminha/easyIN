@@ -43,7 +43,7 @@ class HomeScreen extends StatelessWidget {
                         )
                       : Text(
                           casas[i].status,
-                          style: TextStyle(color: Colors.green, fontSize: 10),
+                          style: TextStyle(color: Colors.lightBlue, fontSize: 10),
                         ),
                 ),
               ),

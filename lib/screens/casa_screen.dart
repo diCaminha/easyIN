@@ -23,7 +23,9 @@ class _CasaScreenState extends State<CasaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("CASA 7")),
+      appBar: AppBar(title: Text("CASA 7", style: TextStyle(color: Colors.white),),
+
+      backgroundColor: Colors.deepOrangeAccent,),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
