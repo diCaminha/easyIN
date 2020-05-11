@@ -13,4 +13,14 @@ class Condominio {
       @required this.nome,
       @required this.endereco,
       @required this.numCasas});
+
+  static fromJson(Map<String, dynamic> data) {
+    return {
+      'id': data['id'],
+      'nomeSindico': data['nomeSindico'],
+      'nome': data['nome'],
+      'endereco': data['endereco'],
+      'numCasas': data['numCasas']
+    };
+  }
 }

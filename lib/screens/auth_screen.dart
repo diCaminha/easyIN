@@ -1,6 +1,8 @@
+import 'package:easyin/providers/auth_provider.dart';
 import 'package:easyin/screens/home_condominio_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -62,6 +64,7 @@ class _AuthCardState extends State<AuthCard> {
   Map<String, String> _authData = {
     'email': '',
     'password': '',
+    'nome': '',
   };
   bool _isLoading = false;
 
@@ -103,6 +106,22 @@ class _AuthCardState extends State<AuthCard> {
                     },
                   ),
                 ),
+                if (_authMode == AuthMode.Signup)
+                  Padding(
+                    padding: EdgeInsets.only(top: 15.0),
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                          labelText: 'Nome', border: OutlineInputBorder()),
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'nome é obrigatório.';
+                        }
+                      },
+                      onSaved: (value) {
+                        _authData['nome'] = value;
+                      },
+                    ),
+                  ),
                 Padding(
                   padding: EdgeInsets.only(top: 15.0),
                   child: TextFormField(
@@ -125,7 +144,9 @@ class _AuthCardState extends State<AuthCard> {
                     padding: EdgeInsets.only(top: 15.0),
                     child: TextFormField(
                       enabled: _authMode == AuthMode.Signup,
-                      decoration: InputDecoration(labelText: 'Confirmar senha', border: OutlineInputBorder()),
+                      decoration: InputDecoration(
+                          labelText: 'Confirmar senha',
+                          border: OutlineInputBorder()),
                       obscureText: true,
                       validator: _authMode == AuthMode.Signup
                           ? (value) {
@@ -176,24 +197,32 @@ class _AuthCardState extends State<AuthCard> {
       return;
     }
 
-
     _formKey.currentState.save();
     setState(() {
       _isLoading = true;
     });
 
     if (_authMode == AuthMode.Login) {
-        FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: _authData['email'], password: _authData['password'])
-            .then((user) => Navigator.push(context, MaterialPageRoute(builder: (context) => HomeCondominioScreen())))
-            .catchError((e) => AlertDialog(title: Text('Erro ao fazer login'), backgroundColor: Colors.red));
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
+      authProvider
+          .signin(_authData['email'], _authData['password'])
+          .then((user) => {
+                print('@@@@@@ test @@@@@@'),
+                Navigator.of(context).pushReplacementNamed('/home-condominio'),
+              })
+          .catchError((e) => AlertDialog(
+              title: Text('Erro ao fazer login'), backgroundColor: Colors.red));
     } else {
-        FirebaseAuth.instance
-            .createUserWithEmailAndPassword(email: _authData['email'], password: _authData['password'])
-            .then((user) => {
-              _switchAuthMode(),
-              Navigator.push(context, MaterialPageRoute(builder: (context) => AuthScreen())),
-        }).catchError((e) => AlertDialog(title: Text('Erro ao fazer login'), backgroundColor: Colors.red));
+      final authProvider = Provider.of<AuthProvider>(context);
+      authProvider
+          .signup(_authData['nome'], _authData['email'], _authData['password'])
+          .then((user) => {
+                _switchAuthMode(),
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AuthScreen())),
+              })
+          .catchError((e) => AlertDialog(
+              title: Text('Erro ao fazer login'), backgroundColor: Colors.red));
     }
 
     setState(() {
