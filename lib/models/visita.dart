@@ -6,11 +6,11 @@ class Visita {
   String data;
   String pessoaOuPlaca;
   TipoEntrada tipoEntrada;
-  int quantidadeDePessoas;
+  String quantidadeDePessoas;
   bool entrou;
 
   Visita({
-    @required this.id,
+    this.id,
     @required this.data,
     @required this.pessoaOuPlaca,
     @required this.tipoEntrada,

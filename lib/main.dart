@@ -3,6 +3,7 @@ import 'package:easyin/providers/casas_provider.dart';
 import 'package:easyin/providers/condominios_provider.dart';
 import 'package:easyin/screens/auth_screen.dart';
 import 'package:easyin/screens/casa_screen.dart';
+import 'package:easyin/screens/form_visita.dart';
 import 'package:easyin/screens/home_condominio_screen.dart';
 import 'package:easyin/screens/home_screen.dart';
 import 'package:flutter/material.dart';
@@ -21,10 +22,10 @@ class MyApp extends StatelessWidget {
             value: AuthProvider(),
           ),
           ChangeNotifierProxyProvider<AuthProvider, CondominiosProvider>(
-            update: (ctx, auth, _) => CondominiosProvider(userId:auth.userId),
+            update: (ctx, auth, _) => CondominiosProvider(userId:auth.userId), create: (BuildContext context) {},
           ),
           ChangeNotifierProxyProvider<AuthProvider, CasasProvider>(
-            update: (ctx, auth, _) => CasasProvider(userId:auth.userId),
+            update: (ctx, auth, _) => CasasProvider(userId:auth.userId), create: (BuildContext context) {},
           )
         ],
         child: Consumer<AuthProvider>(

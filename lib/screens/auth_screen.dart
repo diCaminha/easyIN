@@ -1,6 +1,4 @@
 import 'package:easyin/providers/auth_provider.dart';
-import 'package:easyin/screens/home_condominio_screen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -106,7 +104,7 @@ class _AuthCardState extends State<AuthCard> {
                     },
                   ),
                 ),
-                if (_authMode == AuthMode.Signup)
+                if (_authMode == AuthMode.Signup) 
                   Padding(
                     padding: EdgeInsets.only(top: 15.0),
                     child: TextFormField(
@@ -213,7 +211,7 @@ class _AuthCardState extends State<AuthCard> {
           .catchError((e) => AlertDialog(
               title: Text('Erro ao fazer login'), backgroundColor: Colors.red));
     } else {
-      final authProvider = Provider.of<AuthProvider>(context);
+      final authProvider = Provider.of<AuthProvider>(context, listen: false);
       authProvider
           .signup(_authData['nome'], _authData['email'], _authData['password'])
           .then((user) => {
