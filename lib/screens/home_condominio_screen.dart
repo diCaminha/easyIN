@@ -1,9 +1,9 @@
 import 'package:easyin/models/condominio.dart';
-import 'package:easyin/providers/condominios_provider.dart';
+
 import 'package:easyin/widgets/form_condominio.dart';
 import 'package:easyin/widgets/inscricao_condominio_card.dart';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class HomeCondominioScreen extends StatelessWidget {
 
