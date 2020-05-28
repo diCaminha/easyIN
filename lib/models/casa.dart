@@ -14,8 +14,8 @@ class Casa {
   static fromJson(Map<String, dynamic> data) {
     return {
       'id': data['id'],
-      'nomeSindico': data['nome'],
-      'nome': data['status'],
+      'nome': data['nome'],
+      'status': data['status']
     };
   }
 }
