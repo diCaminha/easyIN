@@ -16,7 +16,7 @@ class CondominiosProvider with ChangeNotifier {
     Usuario sindico = new Usuario(
         id: document.documentID, nome: document.data['nome'], email: null);
 
-    await Firestore.instance.collection("condominios").add({
+    var ref = await Firestore.instance.collection("condominios").add({
       'nome': _condominio.nome,
       'endereco': _condominio.endereco,
       'nomeSindico': sindico.nome,
@@ -33,6 +33,17 @@ class CondominiosProvider with ChangeNotifier {
       'endereco': _condominio.endereco,
       'nomeSindico': sindico.nome,
     });
+
+    for (int i = 0; i <= _condominio.numCasas; i++) {
+       await Firestore.instance
+        .collection('condominios')
+        .document(ref.documentID)
+        .collection('casas')
+        .add({
+            'nome': 'CASA $i',
+            'status': 'CRIADA'
+        });
+    }
 
     fetchAndUpdate();
   }
