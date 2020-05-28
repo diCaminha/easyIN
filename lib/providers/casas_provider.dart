@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easyin/models/casa.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +9,8 @@ class CasasProvider with ChangeNotifier {
   String condominioId;
 
   Future<List<Casa>> getCasasByCondominioId() async {
-   getCondominioId();
-
+   await getCondominioId();
+   print(">>>>>>>> ${condominioId}");
    var query = Firestore.instance
         .collection('condominios')
         .document(condominioId)
@@ -35,12 +33,12 @@ class CasasProvider with ChangeNotifier {
     return activities;
   }
 
-  void getCondominioId() {
-    var condominios = Firestore.instance.collection('condominions').limit(1).getDocuments();
-    condominios.then((value) => {
-      for (var document in value.documents) {
-        condominioId = document.documentID
-      }  
-    });
+  Future<void> getCondominioId() async {
+    var condominios = await Firestore.instance.collection('condominios').orderBy('numCasas').limit(1).getDocuments();
+
+    for (var document in condominios.documents) {
+       condominioId = document.documentID;
+       break;
+    }
   }
 }
