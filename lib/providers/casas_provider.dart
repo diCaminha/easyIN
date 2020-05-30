@@ -23,14 +23,14 @@ class CasasProvider with ChangeNotifier {
   }
 
   List<Casa> getCasas(QuerySnapshot querySnapshot) {
-    final activities = <Casa>[];
+    final casas = <Casa>[];
 
     final documents = querySnapshot.documents;
     for (var document in documents) {
-        final casa = Casa.fromJson(document.data);
-        activities.add(casa.copyWith(id: document.documentID));
+        final casa = Casa.fromJson(document.documentID, document.data);
+        casas.add(casa);
     }
-    return activities;
+    return casas;
   }
 
   Future<void> getCondominioId() async {

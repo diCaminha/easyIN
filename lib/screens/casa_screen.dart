@@ -1,16 +1,22 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class CasaScreen extends StatefulWidget {
   static const routeName = '/casa';
+
+  const CasaScreen({
+      @required this.casa
+  });
+  final String casa;
 
   @override
   _CasaScreenState createState() => _CasaScreenState();
 }
 
 class _CasaScreenState extends State<CasaScreen> {
-  String codigo = "";
+  String codigo;
   bool exibirCodigo = false;
 
   _exibirCodigo() {
@@ -18,12 +24,17 @@ class _CasaScreenState extends State<CasaScreen> {
     setState(() {
       exibirCodigo = true;
     });
+
+    Firestore.instance.collection('codigos').add({
+      'uuid': codigo,
+      'casa': widget.casa
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("CASA 7", style: TextStyle(color: Colors.white),),
+      appBar: AppBar(title: Text(widget.casa, style: TextStyle(color: Colors.white),),
 
       backgroundColor: Colors.deepOrangeAccent,),
       body: Column(

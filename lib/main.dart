@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
             routes: {
               HomeCondominioScreen.routeName: (ctx) => HomeCondominioScreen(),
               HomeScreen.routeName: (ctx) => HomeScreen(),
-              CasaScreen.routeName: (ctx) => CasaScreen(),
+              CasaScreen.routeName: (ctx) => CasaScreen(casa: "Casa 7",),
             },
           ),
         ));

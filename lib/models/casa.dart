@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class Casa {
-  final String id;
-  final String nome;
-  final String status;
+   String id;
+   String nome;
+   String status;
 
 
   Casa(
@@ -11,11 +11,21 @@ class Casa {
       @required this.nome,
       @required this.status});
 
-  static fromJson(Map<String, dynamic> data) {
-    return {
-      'id': data['id'],
-      'nome': data['nome'],
-      'status': data['status']
-    };
+  Casa.fromJson(String id, Map<String, dynamic> data) {
+      id = id;
+      nome = data['nome'];
+      status = data['status'];
+  }
+
+  Casa copyWith({
+    String id,
+    String nome,
+    String status
+  }) {
+    return Casa(
+      id: id ?? this.id,
+      nome: nome ?? this.nome,
+      status: status ?? this.status
+    );
   }
 }
