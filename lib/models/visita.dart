@@ -7,6 +7,7 @@ class Visita {
   String pessoaOuPlaca;
   TipoEntrada tipoEntrada;
   String quantidadeDePessoas;
+  String casa;
   bool entrou;
 
   Visita({
@@ -15,6 +16,7 @@ class Visita {
     @required this.pessoaOuPlaca,
     @required this.tipoEntrada,
     @required this.quantidadeDePessoas,
+    @required this.casa,
     this.entrou
   });
 
@@ -25,6 +27,7 @@ class Visita {
       tipoEntrada = _toTipoEntrada(json['tipoEntrada']);
       quantidadeDePessoas = json['quantidadeDePessoas'];
       entrou = json['entrou'];
+      casa = json['casa'];
   }
 
   TipoEntrada _toTipoEntrada(String tipoEntrada) {

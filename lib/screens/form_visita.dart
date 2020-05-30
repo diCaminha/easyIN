@@ -6,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'home_condominio_screen.dart';
 
 class VisitaScreen extends StatefulWidget {
+  const VisitaScreen({Key key, @required this.casa});
+  final String casa;
+
   @override
   _VisitaState createState() => _VisitaState();
 }
@@ -16,10 +19,11 @@ class _VisitaState extends State<VisitaScreen> {
   var _pessoaOuPlaca;
   TipoEntrada _tipoEntrada;
   var _quantidadePessoa;
+  var _casa;
 
   @override
   Widget build(BuildContext context) {
-   return Container(
+    return Container(
       margin: EdgeInsets.only(bottom: 20.0),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -33,9 +37,9 @@ class _VisitaState extends State<VisitaScreen> {
               child: Column(
                 children: <Widget>[
                   Text(
-                  'Cadastro de Visitas',
-                  style: TextStyle(color: Colors.black54, fontSize: 18),
-                ),
+                    'Cadastro de Visitas',
+                    style: TextStyle(color: Colors.black54, fontSize: 18),
+                  ),
                   Form(
                     key: _form,
                     child: Column(
@@ -49,7 +53,8 @@ class _VisitaState extends State<VisitaScreen> {
                           },
                         ),
                         TextFormField(
-                          decoration: InputDecoration(labelText: 'Nome ou Placa'),
+                          decoration:
+                              InputDecoration(labelText: 'Nome ou Placa'),
                           textInputAction: TextInputAction.next,
                           onSaved: (value) {
                             _pessoaOuPlaca = value;
@@ -64,14 +69,17 @@ class _VisitaState extends State<VisitaScreen> {
                           },
                         ),
                         TextFormField(
-                          decoration: InputDecoration(labelText: 'Modo de Entrada'),
+                          decoration:
+                              InputDecoration(labelText: 'Modo de Entrada'),
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.number,
                           onSaved: (value) {
                             _tipoEntrada = getTipoEntrada(value);
                           },
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(
+                          height: 20,
+                        ),
                         Container(
                           width: 300.0,
                           child: RaisedButton(
@@ -83,7 +91,9 @@ class _VisitaState extends State<VisitaScreen> {
                             onPressed: () {
                               _saveForm();
                               setState(() {
-                                MaterialPageRoute(builder: (context) => HomeCondominioScreen());  
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        HomeCondominioScreen());
                               });
                             },
                           ),
@@ -100,13 +110,19 @@ class _VisitaState extends State<VisitaScreen> {
 
   void _saveForm() async {
     _form.currentState.save();
-    Visita _visita = Visita(data: _data, pessoaOuPlaca: _pessoaOuPlaca, quantidadeDePessoas: _quantidadePessoa, tipoEntrada: _tipoEntrada);
+    Visita _visita = Visita(
+        data: _data,
+        pessoaOuPlaca: _pessoaOuPlaca,
+        quantidadeDePessoas: _quantidadePessoa,
+        tipoEntrada: _tipoEntrada,
+        casa: _casa);
 
     await Firestore.instance.collection("visitas").add({
       'data': _visita.data,
       'pessoaOuPlaca': _visita.pessoaOuPlaca,
       'quantidadeDePessoas': _visita.quantidadeDePessoas,
-      'tipoEntrada': _visita.tipoEntrada.index
+      'tipoEntrada': _visita.tipoEntrada.index,
+      'casa': widget.casa
     });
   }
 
