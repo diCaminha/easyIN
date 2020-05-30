@@ -29,7 +29,7 @@ class HomeCondominioScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  InscricaoCondominioCard(deviceSize: deviceSize),
+                  InscricaoCondominioCard(),
                   FormCondominio(),
                   Text(
                   'Meus condomínios',
