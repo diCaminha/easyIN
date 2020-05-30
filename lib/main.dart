@@ -3,6 +3,7 @@ import 'package:easyin/providers/casas_provider.dart';
 import 'package:easyin/providers/condominios_provider.dart';
 import 'package:easyin/screens/auth_screen.dart';
 import 'package:easyin/screens/casa_screen.dart';
+import 'package:easyin/screens/concierge_screen/concierge_page.dart';
 import 'package:easyin/screens/form_visita.dart';
 import 'package:easyin/screens/home_condominio_screen.dart';
 import 'package:easyin/screens/home_screen.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
             title: 'Condo App',
             theme: ThemeData(
                 primarySwatch: Colors.orange, accentColor: Colors.white),
-            home: auth.isAuth ? HomeCondominioScreen() : AuthScreen(),
+            home: auth.isAuth ? HomeCondominioScreen() : ConciergePage(),
             routes: {
               HomeCondominioScreen.routeName: (ctx) => HomeCondominioScreen(),
               HomeScreen.routeName: (ctx) => HomeScreen(),

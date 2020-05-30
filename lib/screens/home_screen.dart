@@ -31,7 +31,7 @@ class _HomeState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Condominio Doce Lar',
+          '',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.deepOrangeAccent,

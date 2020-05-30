@@ -1,13 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easyin/models/usuario.dart';
-import 'package:easyin/providers/auth_provider.dart';
 import 'package:easyin/providers/condominios_provider.dart';
 import 'package:easyin/screens/home_condominio_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../models/condominio.dart';
-import '../screens/home_page.dart';
 
 class FormCondominio extends StatefulWidget {
   @override

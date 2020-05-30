@@ -124,6 +124,11 @@ class _VisitaState extends State<VisitaScreen> {
       'tipoEntrada': _visita.tipoEntrada.index,
       'casa': widget.casa
     });
+
+   Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => VisitaScreen(casa: widget.casa,)));
   }
 
   TipoEntrada getTipoEntrada(String value) {

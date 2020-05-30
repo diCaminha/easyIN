@@ -13,7 +13,7 @@ class HomeCondominioScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     
     final List<Condominio> condominiosUsuario = [
-      Condominio(id: '11111', nomeSindico: 'Denis Caminha', nome: 'Condominio Doce Lar', endereco: 'Rua Evaristo Veiga 889', numCasas: 3),
+      Condominio(id: '', nomeSindico: '', nome: '', endereco: '', numCasas: 3),
     ];
 
     final deviceSize = MediaQuery.of(context).size;
