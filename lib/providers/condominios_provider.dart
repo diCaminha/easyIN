@@ -34,7 +34,7 @@ class CondominiosProvider with ChangeNotifier {
       'nomeSindico': sindico.nome,
     });
 
-    for (int i = 0; i <= _condominio.numCasas; i++) {
+    for (int i = 1; i <= _condominio.numCasas; i++) {
        await Firestore.instance
         .collection('condominios')
         .document(ref.documentID)
