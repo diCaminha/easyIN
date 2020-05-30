@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easyin/models/codigos.dart';
+import 'package:easyin/screens/home_morador.dart';
 import 'package:flutter/material.dart';
 
 class InscricaoCondominioCard extends StatelessWidget {
@@ -10,6 +13,7 @@ class InscricaoCondominioCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String codigo;
     return Container(
       margin: EdgeInsets.only(bottom: 20.0),
       child: Padding(
@@ -40,7 +44,9 @@ class InscricaoCondominioCard extends StatelessWidget {
                         return 'código vazio';
                       }
                     },
-                    onSaved: (value) {},
+                    onSaved: (value) {
+                      buscarCodigo(value, context);
+                    },
                   ),
                 ),
                 SizedBox(
@@ -63,5 +69,25 @@ class InscricaoCondominioCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> buscarCodigo(String value, BuildContext context) async {
+    Codigo codigos;
+
+    var querySnapshot = await Firestore.instance
+        .collection('codigos')
+        .where("uuid", isEqualTo: value)
+        .getDocuments();
+
+    final documents = querySnapshot.documents;
+
+    codigos = Codigo.fromJson(documents[1].data);
+
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => HomeMoradorScreen(
+                  codigo: codigos,
+                )));
   }
 }

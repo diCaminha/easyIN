@@ -36,7 +36,7 @@ class _CasaScreenState extends State<CasaScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.casa, style: TextStyle(color: Colors.white),),
 
-      backgroundColor: Colors.deepOrangeAccent,),
+      backgroundColor: Colors.deepOrange[100],),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
