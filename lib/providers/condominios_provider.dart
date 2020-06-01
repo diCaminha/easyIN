@@ -44,25 +44,5 @@ class CondominiosProvider with ChangeNotifier {
             'status': 'CRIADA'
         });
     }
-
-    fetchAndUpdate();
-  }
-
-  void fetchAndUpdate() async {
-    var snapshot = await Firestore.instance
-        .collection('usuarios')
-        .document(userId)
-        .collection('condominios')
-        .getDocuments();
-
-    final documents = snapshot.documents;
-
-    _condominios = List.generate(
-        documents.length, (i) => Condominio.fromJson(documents[i].data));
-  }
-
-  List<Condominio> get condominios {
-    fetchAndUpdate();
-    return _condominios;
   }
 }

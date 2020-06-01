@@ -19,10 +19,6 @@ class HomeState2 extends State {
 
   @override
   Widget build(BuildContext context) {
-    final List<Condominio> condominiosUsuario = [
-      Condominio(id: '', nomeSindico: '', nome: '', endereco: '', numCasas: 3),
-    ];
-
     final deviceSize = MediaQuery.of(context).size;
     var stack = Stack(
       children: <Widget>[
@@ -36,27 +32,6 @@ class HomeState2 extends State {
               children: <Widget>[
                 InscricaoCondominioCard(),
                 FormCondominio(),
-                Text(
-                  'Meus condomínios',
-                  style: TextStyle(color: Colors.white, fontSize: 18),
-                ),
-                Flexible(
-                  child: ListView.builder(
-                      itemCount: condominiosUsuario.length,
-                      itemBuilder: (ctx, index) {
-                        return ListTile(
-                          leading: Icon(Icons.home),
-                          title: Text(
-                            '${condominiosUsuario[index].nome}',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          subtitle: Text(condominiosUsuario[index].endereco),
-                          onTap: () {
-                            Navigator.of(context).pushNamed('/home');
-                          },
-                        );
-                      }),
-                ),
               ],
             ),
           ),
@@ -66,15 +41,18 @@ class HomeState2 extends State {
 
     final List<Widget> _children = [stack, ConciergePage(), HomeScreen()];
     return Scaffold(
-      backgroundColor: Colors.deepOrange[100],
+      backgroundColor: Colors.grey[100],
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: onTabTapped,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), title: new Text("Home")),
-          BottomNavigationBarItem(icon: Icon(Icons.contacts), title: new Text("Porteiro")),
-          BottomNavigationBarItem(icon: Icon(Icons.hotel), title: new Text("Casa"))
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home), title: new Text("Home")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.contacts), title: new Text("Porteiro")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.hotel), title: new Text("Casa"))
         ],
       ),
     );
@@ -83,7 +61,6 @@ class HomeState2 extends State {
   void onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
-    }); 
+    });
   }
-
 }
