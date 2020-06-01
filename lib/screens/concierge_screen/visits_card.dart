@@ -14,7 +14,7 @@ class VisitsCard extends StatelessWidget {
   final String casa;
   final String nome;
   final TipoEntrada tipoEntrada;
-  final int quantidadePessoa;
+  final String quantidadePessoa;
 
   @override
   Widget build(BuildContext context) {
