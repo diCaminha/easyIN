@@ -1,6 +1,7 @@
 import 'package:easyin/models/casa.dart';
 import 'package:easyin/providers/casas_provider.dart';
 import 'package:easyin/screens/casa_screen.dart';
+import 'package:easyin/screens/concierge_screen/concierge_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,14 +19,14 @@ class _HomeState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     if (!isLoaded) {
-       Provider.of<CasasProvider>(context)
-        .getCasasByCondominioId()
-        .then((value) => {
-          setState(() {
-            casas.addAll(value);
-            isLoaded = true;
-          })
-        });
+      Provider.of<CasasProvider>(context)
+          .getCasasByCondominioId()
+          .then((value) => {
+                setState(() {
+                  casas.addAll(value);
+                  isLoaded = true;
+                })
+              });
     }
 
     return Scaffold(
@@ -34,7 +35,7 @@ class _HomeState extends State<HomeScreen> {
           '',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.deepOrangeAccent,
+        backgroundColor: Colors.deepOrange[50],
       ),
       body: GridView.builder(
         padding: EdgeInsets.all(15),
@@ -47,8 +48,10 @@ class _HomeState extends State<HomeScreen> {
         itemBuilder: (ctx, i) => Container(
           child: GestureDetector(
             onTap: () {
-              Navigator.push(context,
-              MaterialPageRoute(builder: (context) => CasaScreen(casa: casas[i].nome)));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CasaScreen(casa: casas[i].nome)));
             },
             child: Card(
               margin: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
@@ -76,4 +79,5 @@ class _HomeState extends State<HomeScreen> {
       ),
     );
   }
+
 }

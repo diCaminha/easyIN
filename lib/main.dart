@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
             title: 'Condo App',
             theme: ThemeData(
                 primarySwatch: Colors.orange, accentColor: Colors.white),
-            home: auth.isAuth ? HomeCondominioScreen() : ConciergePage(),
+            home: auth.isAuth ? HomeCondominioScreen() : AuthScreen(),
             routes: {
               HomeCondominioScreen.routeName: (ctx) => HomeCondominioScreen(),
               HomeScreen.routeName: (ctx) => HomeScreen(),
