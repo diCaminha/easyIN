@@ -24,8 +24,8 @@ class Visita {
       id = json['id'];
       data = json['data'];
       pessoaOuPlaca = json['pessoaOuPlaca'];
-      tipoEntrada = _toTipoEntrada(json['tipoEntrada']);
-      quantidadeDePessoas = json['quantidadeDePessoas'];
+      tipoEntrada = _toTipoEntrada(json['tipoEntrada'].toString());
+      quantidadeDePessoas = json['quantidadeDePessoas'].toString();
       entrou = json['entrou'];
       casa = json['casa'];
   }

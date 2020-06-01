@@ -1,7 +1,4 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:easyin/models/enum/tipo_entrada.dart';
 import 'package:easyin/models/visita.dart';
 import 'package:easyin/screens/concierge_screen/visits_card.dart';
 import 'package:flutter/cupertino.dart';
@@ -14,14 +11,18 @@ class ConciergePage extends StatefulWidget {
 
 class _ConciergePageState extends State<ConciergePage> {
   bool isLoad = false;
-  List<Visita> _visitas;
+  List<Visita> _visitas = [];
   @override
   Widget build(BuildContext context) {
     if (!isLoad) {
       getVisitas().then((value) => {
             setState(() {
-              _visitas.addAll(value);
-              isLoad = true;
+              for (var visita in value) {
+                if (visita.casa.isNotEmpty) {
+                  _visitas.add(visita);
+                }
+                isLoad = true;
+              }
             })
           });
     }
@@ -49,23 +50,13 @@ class _ConciergePageState extends State<ConciergePage> {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: FloatingActionButton(
-              child: Icon(
-                Icons.chat,
-                color: Colors.orange,
-              ),
-              onPressed: null,
-            ),
-          )
         ],
       ),
     );
   }
 
   Future<List<Visita>> getVisitas() async {
-    var query = Firestore.instance.collection('visitas').orderBy('nome');
+    var query = Firestore.instance.collection('visitas').orderBy('casa');
 
     var documents = await query.getDocuments();
 
