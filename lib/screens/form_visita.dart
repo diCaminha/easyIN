@@ -23,9 +23,9 @@ class _VisitaState extends State<VisitaScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 20.0),
-      child: Padding(
+    return Scaffold(
+      appBar: AppBar(title: Text("Cadastro de visítas"), backgroundColor: Colors.orange[100],),
+      body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Card(
             shape: RoundedRectangleBorder(
